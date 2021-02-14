@@ -1,0 +1,53 @@
+﻿@model IList<AppCorp.Models.mobileNumbar>
+@{
+    ViewBag.Title = "sendMessage";
+}
+
+@using (Html.BeginForm("sendMessage", "mobileNumbar", FormMethod.Post))
+{
+
+    <div class="form-group">
+        <div class="col-md-offset-5 col-md-10">
+            <input type="submit" value="Send Message" class="btn btn-default" />
+        </div>
+    </div>
+    <br /><br />
+    for (int x = 0; x < Model.Count; x++)
+    {
+    <div>
+        @Html.HiddenFor(model => Model[x].id)
+        @Html.HiddenFor(model => Model[x].mobile)
+        @Html.HiddenFor(model => Model[x].isSend)
+    </div>
+    }
+    <div class="form-group">
+        @if (Model == null || Model.Count == 0)
+        {
+            <label style="color:red">No Numbar To send.</label>
+        }
+            @if (Model != null && Model.Count > 0)
+            {
+                <Label>Mobile Numbars To Send.</Label>
+                <table class="table-bordered" style="width:50%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Mobile Numbar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var i = 0;
+                        }
+                        @foreach (var mobileNumbar in Model.Select(x => x.mobile))
+                        {
+                            i += 1;
+                            <tr><td>@i</td><td>@mobileNumbar</td></tr>
+                        }
+                    </tbody>
+                </table>
+            }
+
+
+        </div>
+}
