@@ -13,6 +13,7 @@ namespace AppCorp.Controllers
         [HttpGet]
         public ActionResult sendMessage()
         {
+
             List<mobileNumbar> data = new List<mobileNumbar>();
             using (AppcorpEntities1 dbModal = new AppcorpEntities1())
             {
